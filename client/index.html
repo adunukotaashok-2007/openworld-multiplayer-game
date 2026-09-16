@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,
+             maximum-scale=1.0, user-scalable=no,
+             viewport-fit=cover" />
+  <!-- Force landscape on mobile -->
+  <meta name="screen-orientation" content="landscape" />
+  <title>OpenWorld Multiplayer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/hud.css" />
+  <link rel="stylesheet" href="css/chat.css" />
+  <link rel="icon" href="assets/ui/icon.png" />
+</head>
+<body>
+  <!-- ── Loading Screen ── -->
+  <div id="loading-screen">
+    <div class="loader-content">
+      <h1>OPENWORLD</h1>
+      <div class="progress-bar">
+        <div class="progress-fill" id="load-progress"></div>
+      </div>
+      <p id="load-status">Initializing engine…</p>
+    </div>
+  </div>
+
+  <!-- ── Main Menu ── -->
+  <div id="main-menu" class="hidden">
+    <h1>OPENWORLD</h1>
+    <input type="text" id="player-name" placeholder="Enter your name" maxlength="16" />
+    <button id="btn-play" class="menu-btn">▶ PLAY ONLINE</button>
+    <button id="btn-offline" class="menu-btn">🤖 OFFLINE (Bots)</button>
+    <button id="btn-settings" class="menu-btn">⚙ SETTINGS</button>
+  </div>
+
+  <!-- ── Game Canvas ── -->
+  <canvas id="game-canvas"></canvas>
+
+  <!-- ── HUD Overlay ── -->
+  <div id="hud" class="hidden">
+    <!-- Health Bar -->
+    <div id="health-bar-container">
+      <div id="health-bar-fill"></div>
+      <span id="health-text">100 / 100</span>
+    </div>
+
+    <!-- Minimap -->
+    <div id="minimap">
+      <canvas id="minimap-canvas" width="150" height="150"></canvas>
+    </div>
+
+    <!-- Weapon Slot -->
+    <div id="weapon-slot">
+      <img id="weapon-icon" src="assets/ui/fist.png" alt="weapon" />
+      <span id="ammo-count">∞</span>
+    </div>
+
+    <!-- Kill Feed -->
+    <div id="kill-feed"></div>
+
+    <!-- Player Count -->
+    <div id="player-count">Players: <span id="p-count">1</span></div>
+  </div>
+
+  <!-- ── Virtual Joystick ── -->
+  <div id="joystick-zone-left" class="touch-zone"></div>
+  <div id="joystick-zone-right" class="touch-zone"></div>
+
+  <!-- ── Action Buttons ── -->
+  <div id="action-buttons" class="hidden">
+    <button id="btn-attack" class="action-btn attack-btn">⚔️</button>
+    <button id="btn-jump" class="action-btn jump-btn">⬆️</button>
+    <button id="btn-interact" class="action-btn interact-btn">🔧</button>
+    <button id="btn-crouch" class="action-btn crouch-btn">⬇️</button>
+  </div>
+
+  <!-- ── Chat ── -->
+  <div id="chat-container" class="hidden">
+    <div id="chat-messages"></div>
+    <div id="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Type message…" maxlength="120" />
+      <button id="chat-send">➤</button>
+    </div>
+  </div>
+  <button id="chat-toggle" class="hidden">💬</button>
+
+  <!-- ── Scripts ── -->
+  <script src="dist/bundle.js"></script>
+</body>
+</html>
