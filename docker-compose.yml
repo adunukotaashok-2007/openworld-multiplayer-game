@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # ── STATIC CLIENT BUILD & HOSTING ──
+  client:
+    build:
+      context: ./client
+      dockerfile: ../client/Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - server
+    networks:
+      - game-network
+
+  # ── NODE.JS GAME SERVER ──
+  server:
+    build:
+      context: ./server
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - TICK_RATE=20
+    networks:
+      - game-network
+
+  # ── PYTHON AI SERVICE ──
+  ai-service:
+    build:
+      context: ./ai-service
+    ports:
+      - "5000:5000"
+    environment:
+      - AI_PORT=5000
+      - GAME_SERVER_URL=http://server:3000
+    networks:
+      - game-network
+
+  # ── JAVA MATCHMAKING SERVICE ──
+  matchmaking:
+    build:
+      context: ./matchmaking
+      dockerfile: ../matchmaking/Dockerfile
+    ports:
+      - "8081:8081"
+    networks:
+      - game-network
+
+networks:
+  game-network:
+    driver: bridge
