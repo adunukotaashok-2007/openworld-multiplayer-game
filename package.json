@@ -1,0 +1,26 @@
+{
+  "name": "openworld-multiplayer-game",
+  "version": "1.0.0",
+  "description": "Realistic mobile-first multiplayer 3D open world game",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && node index.js",
+    "dev:client": "cd client && npx webpack serve --mode development",
+    "build": "cd client && npx webpack --mode production",
+    "start": "cd server && NODE_ENV=production node index.js",
+    "ai-service": "cd ai-service && python main.py",
+    "matchmaking": "cd matchmaking && mvn spring-boot:run"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT"
+}
